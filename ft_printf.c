@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/05 13:03:23 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/12/05 17:50:17 by mteerlin      ########   odam.nl         */
+/*   Updated: 2020/12/05 19:46:33 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_printf(const char *format, ...)
 		{
 			format++;
 			ft_bzero(&flags, sizeof(t_flags));
-			printf_parse(&flags, &format, &args);
+			pf_parse(&flags, &format, &args);
 			printf("\nRA:\t%i\n", flags.rightallign);
 			printf("Z:\t%i\n", flags.zero);
 			printf("H:\t%i\n", flags.hash);
@@ -51,9 +51,9 @@ int	main(void)
 	char	c;
 	char	*s;
 
-	i = 4;
+	i = 1254;
 	c = 'T';
 	s = "I'm a lumberjack and I'm OK";
-	ft_printf("int:\t%-0# +86.14i\nchar:\t%0#+.15c\nstr:\t%+*.*s\n", i, c, 17, 5, s);
+	printf("int:\t%#0 3X\nchar:\t%06c\nstr:\t%0 +*.*s\n", i, c, 86, 26, s);
 	return (0);
 }

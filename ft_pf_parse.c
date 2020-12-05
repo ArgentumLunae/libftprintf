@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/05 16:54:46 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/12/05 17:57:22 by mteerlin      ########   odam.nl         */
+/*   Updated: 2020/12/05 18:10:51 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	parse_precision(t_flags *flags, const char **format, va_list *args)
 //	return
 //}
 
-void		printf_parse(t_flags *flags, const char **format, va_list *args)
+void		pf_parse(t_flags *flags, const char **format, va_list *args)
 {
 	if (ft_strchr(FLAGSYMBOLS, **format))
 		parse_flags(flags, format);

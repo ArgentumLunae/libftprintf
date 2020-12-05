@@ -6,18 +6,18 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/05 13:39:24 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/12/05 17:41:58 by mteerlin      ########   odam.nl         */
+/*   Updated: 2020/12/05 18:10:45 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_PRINTF_H
+#ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include "/Users/mteerlin/Documents/ProjectLibft/Libft/libft.h"
 # include <stdarg.h>
 # define TYPESYMBOLS "cspdiuxX%lh"
 # define FLAGSYMBOLS "-0# +"
 
-typedef struct		s_flags
+typedef struct	s_flags
 {
 	int		rightallign;
 	int		zero;
@@ -26,7 +26,7 @@ typedef struct		s_flags
 	int		plus;
 	int		width;
 	int		precision;
-	char	*type;
-}					t_flags;
-void		printf_parse(t_flags *flags, const char **format, va_list *args);
+	char	*form;
+}				t_flags;
+void			pf_parse(t_flags *flags, const char **format, va_list *args);
 #endif
