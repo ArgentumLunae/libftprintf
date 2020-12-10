@@ -6,10 +6,11 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/05 13:03:23 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/12/05 19:46:33 by mteerlin      ########   odam.nl         */
+/*   Updated: 2020/12/08 21:57:03 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include "ft_printf.h"
@@ -29,13 +30,7 @@ int	ft_printf(const char *format, ...)
 			format++;
 			ft_bzero(&flags, sizeof(t_flags));
 			pf_parse(&flags, &format, &args);
-			printf("\nRA:\t%i\n", flags.rightallign);
-			printf("Z:\t%i\n", flags.zero);
-			printf("H:\t%i\n", flags.hash);
-			printf("S:\t%i\n", flags.space);
-			printf("P:\t%i\n", flags.plus);
-			printf("W:\t%i\n", flags.width);
-			printf("P:\t%i\n", flags.precision);
+			ft_putstr_fd(flags.ret, 1);
 		}
 		else
 			ft_putchar_fd(*format, 1);
@@ -48,12 +43,49 @@ int	ft_printf(const char *format, ...)
 int	main(void)
 {
 	int		i;
+	int		d;
 	char	c;
 	char	*s;
 
-	i = 1254;
+	i = 123456;
+	d = -i;
 	c = 'T';
 	s = "I'm a lumberjack and I'm OK";
-	printf("int:\t%#0 3X\nchar:\t%06c\nstr:\t%0 +*.*s\n", i, c, 86, 26, s);
+	printf("flags:\tnone\twidth:\tnone\tprecision:\tnone\tint:\t%d\tPrintf\n", d);
+	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\tnone\tint:\t%d\tft_Printf\n\n", d);
+	printf("flags:\tnone\twidth:\t10\tprecision:\tnone\tint:\t%10d\tPrintf\n", d);
+	ft_printf("flags:\tnone\twidth:\t10\tprecision:\tnone\tint:\t%10d\tft_Printf\n\n", d);
+	printf("flags:\tnone\twidth:\tnone\tprecision:\t10\tint:\t%.10d\tPrintf\n", d);
+	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\t10\tint:\t%.10d\tft_Printf\n\n", d);
+	printf("flags:\t0\twidth:\t10\tprecision:\tnone\tint:\t%010d\tPrintf\n", d);
+	ft_printf("flags:\t0\twidth:\t10\tprecision:\tnone\tint:\t%010d\tft_Printf\n\n", d);
+	printf("flags:\t-\twidth:\tnone\tprecision:\t10\tint:\t%-.10d\tPrintf\n", d);
+	ft_printf("flags:\t-\twidth:\tnone\tprecision:\t10\tint:\t%-.10d\tft_Printf\n\n", d);
+	printf("flags:\tnone\twidth:\t20\tprecision:\t10\tint:\t%20.10d\tPrintf\n", d);
+	ft_printf("flags:\tnone\twidth:\t20\tprecision:\t10\tint:\t%20.10d\tft_Printf\n\n", d);
+	printf("flags:\t-\twidth:\t20\tprecision:\t10\tint:\t%-20.10d\tPrintf\n", d);
+	ft_printf("flags:\t-\twidth:\t20\tprecision:\t10\tint:\t%-20.10d\tft_Printf\n\n", d);
+	printf("flags:\tnone\twidth:\tnone\tprecision:\t0\tint:\t%.0d\tPrintf\n", d);
+	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\t0\tint:\t%.0d\tft_Printf\n\n", d);
+	printf("flags:\t0\twidth:\t0\tprecision:\t0\tint:\t%00d\tPrintf\n", d);
+	ft_printf("flags:\t0\twidth:\t0\tprecision:\t0\tint:\t%00d\tft_Printf\n\n", d);
+	printf("flags:\tnone\twidth:\tnone\tprecision:\tnone\tint:\t%i\tPrintf\n", i);
+	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\tnone\tint:\t%i\tft_Printf\n\n", i);
+	printf("flags:\tnone\twidth:\t10\tprecision:\tnone\tint:\t%10i\tPrintf\n", i);
+	ft_printf("flags:\tnone\twidth:\t10\tprecision:\tnone\tint:\t%10i\tft_Printf\n\n", i);
+	printf("flags:\tnone\twidth:\tnone\tprecision:\t10\tint:\t%.10i\tPrintf\n", i);
+	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\t10\tint:\t%.10i\tft_Printf\n\n", i);
+	printf("flags:\t0\twidth:\t10\tprecision:\tnone\tint:\t%010i\tPrintf\n", i);
+	ft_printf("flags:\t0\twidth:\t10\tprecision:\tnone\tint:\t%010i\tft_Printf\n\n", i);
+	printf("flags:\t-\twidth:\tnone\tprecision:\t10\tint:\tint:\t%-.10i\tPrintf\n", i);
+	ft_printf("flags:\t-\twidth:\tnone\tprecision:\t10\tint:\tint:\t%-.10i\tft_Printf\n\n", i);
+	printf("flags:\tnone\twidth:\t20\tprecision:\t10\t%20.10i\tPrintf\n", i);
+	ft_printf("flags:\tnone\twidth:\t20\tprecision:\t10\t%20.10i\tft_Printf\n\n", i);
+	printf("flags:\t-\twidth:\t20\tprecision:\t10\tint:\t%-20.10i\tPrintf\n", i);
+	ft_printf("flags:\t-\twidth:\t20\tprecision:\t10\tint:\t%-20.10i\tft_Printf\n\n", i);
+	printf("flags:\tnone\twidth:\tnone\tprecision:\t0\tint:\t%.0i\tPrintf\n", i);
+	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\t0\tint:\t%.0i\tft_Printf\n\n", i);
+	printf("flags:\t0\twidth:\t0\tprecision:\t0\tint:\t%00i\tPrintf\n", i);
+	ft_printf("flags:\t0\twidth:\t0\tprecision:\t0\tint:\t%00i\tft_Printf\n\n", i);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/05 16:54:46 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/12/05 18:10:51 by mteerlin      ########   odam.nl         */
+/*   Updated: 2020/12/08 19:41:21 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ static void	parse_flags(t_flags *flags, const char **format)
 	while (ft_strchr(FLAGSYMBOLS, **format))
 	{
 		if (**format == '-')
-			flags->rightallign = 1;
+			flags->flag[(int)'-'] = 1;
 		else if (**format == '0')
-			flags->zero = 1;
+			flags->flag[(int)'0'] = 1;
 		else if (**format == '#')
-			flags->hash = 1;
+			flags->flag[(int)'#'] = 1;
 		else if (**format == ' ')
-			flags->space = 1;
+			flags->flag[(int)' '] = 1;
 		else if (**format == '+')
-			flags->plus = 1;
+			flags->flag[(int)'+'] = 1;
 		(*format)++;
 	}
-	if (flags->rightallign == 1)
-		flags->zero = 0;
-	if (flags->space == 1)
-		flags->plus = 0;
+	if (flags->flag[(int)'-'] == 1)
+		flags->flag[(int)'0'] = 0;
+	if (flags->flag[(int)' '] == 1)
+		flags->flag[(int)'+'] = 0;
 }
 
 static void	parse_width(t_flags *flags, const char **format, va_list *args)
@@ -70,10 +70,17 @@ static void	parse_precision(t_flags *flags, const char **format, va_list *args)
 	}
 }
 
-//static void	parse_format(t_flags *flags, const char **format, va_list *args)
-//{
-//	return
-//}
+static void	parse_type(t_flags *flags, const char **format, va_list *args)
+{
+	if (**format == 'd' || **format == 'i')
+		ft_pf_signed_dec(va_arg(*args, int), flags);
+//	else if (*format == 'x' || *format == 'X')
+//	else if (*format == 'c')
+//	else if (*format == 's')
+//	else if (*format == 'p')
+//	else if (*format == '%')
+	return ;
+}
 
 void		pf_parse(t_flags *flags, const char **format, va_list *args)
 {
@@ -81,8 +88,12 @@ void		pf_parse(t_flags *flags, const char **format, va_list *args)
 		parse_flags(flags, format);
 	if (ft_isdigit(**format) || **format == '*')
 		parse_width(flags, format, args);
+	else
+		flags->width = -1;
 	if (**format == '.')
 		parse_precision(flags, format, args);
-//	if (ft_strchr(TYPESYMBOLS, **format))
-//		parse_format(flags, format, args);
+	else
+		flags->precision = -1;
+	if (ft_strchr(TYPESYMBOLS, **format))
+		parse_type(flags, format, args);
 }
