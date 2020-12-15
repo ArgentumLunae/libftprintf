@@ -6,13 +6,14 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/05 16:54:46 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/12/08 19:41:21 by mteerlin      ########   odam.nl         */
+/*   Updated: 2020/12/15 21:28:51 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "ft_printf.h"
 #include "/Users/mteerlin/Documents/ProjectLibft/Libft/libft.h"
+#include <stdio.h>
 
 static void	parse_flags(t_flags *flags, const char **format)
 {
@@ -74,11 +75,20 @@ static void	parse_type(t_flags *flags, const char **format, va_list *args)
 {
 	if (**format == 'd' || **format == 'i')
 		ft_pf_signed_dec(va_arg(*args, int), flags);
-//	else if (*format == 'x' || *format == 'X')
-//	else if (*format == 'c')
-//	else if (*format == 's')
-//	else if (*format == 'p')
-//	else if (*format == '%')
+	else if (**format == 'u')
+		ft_pf_unsigned_base(va_arg(*args, int), flags, B_DEC, **format);
+	else if (**format == 'x' || **format == 'X')
+		ft_pf_unsigned_base(va_arg(*args, int), flags, B_HEXDEC, **format);
+	else if (**format == 'p')
+	{
+		flags->precision = -1;
+		flags->flag[(int)'0'] = 0;
+		ft_pf_unsigned_base(va_arg(*args, int), flags, B_HEXDEC, **format);
+	}
+//	else if (**format == 'c')
+	else if (**format == 's')
+		ft_pf_string(va_arg(*args, char*), flags);
+//	else if (**format == '%')
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/05 13:39:24 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/12/08 18:46:42 by mteerlin      ########   odam.nl         */
+/*   Updated: 2020/12/15 20:25:11 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,14 @@ typedef struct	s_flags
 	int		sign;
 	char	*ret;
 }				t_flags;
+int				ft_printf(const char *format, ...);
 void			pf_parse(t_flags *flags, const char **format, va_list *args);
 size_t			det_size(int len, t_flags *flags);
+int				build_precision(int len, t_flags *flags, char **arr);
 int				ft_pf_signed_dec(int nbr, t_flags *flags);
+int				prep_ret(int size, t_flags *flags);
+int				fill_ret(int len, int size, char **arr, t_flags *flags);
+int				ft_pf_unsigned_base(unsigned int nbr, t_flags *flags, \
+										char *base, const char format);
+int				ft_pf_string(char *str, t_flags *flags);
 #endif

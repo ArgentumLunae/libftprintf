@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/08 11:54:23 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/12/08 21:38:46 by mteerlin      ########   odam.nl         */
+/*   Updated: 2020/12/15 18:38:46 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,75 +18,23 @@
 int	ft_pf_signed_dec(int nbr, t_flags *flags)
 {
 	int		len;
-	int		preslen;
 	int		size;
 	char	*arr;
-	char	*temp;
 
-	arr = ft_itoa(nbr);
+	arr = ft_itoa_base(nbr, B_DEC);
 	if (arr == NULL)
 		return (-1);
 	if (arr[0] == '-')
 		flags->sign = 1;
 	len = ft_strlen(arr);
-	if (flags->precision >= 0)
-		flags->flag[(int)'0'] = 0;
-	if (flags->precision > len)
-	{
-		preslen = flags->precision + flags->sign;
-		temp = malloc((preslen + 1) * sizeof(char));
-		if (!temp)
-			return (-1);
-		ft_memset(temp, '0', preslen);
-		temp[preslen + flags->sign] = '\0';
-		while (len >= flags->sign)
-		{
-			temp[preslen] = arr[len];
-			len--;
-			preslen--;
-		}
-		while (preslen >= flags->sign)
-		{
-			temp[preslen] = '0';
-			preslen--;
-		}
-		if (flags->sign == 1)
-			temp[preslen] = arr[len];
-		free(arr);
-		arr = temp;
-		len = ft_strlen(arr);
-	}
-	size = det_size(len, flags);
-	flags->ret = malloc((size + 1) * sizeof(char));
-	if (flags->ret == NULL)
+	if (flags->precision > len && build_precision(len, flags, &arr) == -1)
 		return (-1);
-	ft_memset(flags->ret, ' ', size);
-	flags->ret[size] = '\0';
+	size = det_size(len, flags);
+	if (prep_ret(size, flags) == -1)
+		return (-1);
 	size--;
-	len--;
-	if (flags->flag[(int)'-'] == 1)
-	{
-		ft_memcpy(flags->ret, arr, len + 1);
-		free(arr);
-	}
-	else
-	{
-		while (len >= flags->sign)
-		{
-			flags->ret[size] = arr[len];
-			size--;
-			len--;
-		}
-		while (flags->flag[(int)'0'] == 1 && size >= flags->sign)
-		{
-			flags->ret[size] = '0';
-			size--;
-		}
-		if (flags->sign == 1)
-		{
-			flags->ret[size] = arr[len];
-		}
-		free(arr);
-	}
+	len = ft_strlen(arr) - 1;
+	if (fill_ret(len, size, &arr, flags) == -1)
+		return (-1);
 	return (1);
 }
