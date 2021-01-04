@@ -6,13 +6,13 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/05 16:54:46 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/12/08 19:41:21 by mteerlin      ########   odam.nl         */
+/*   Updated: 2020/12/11 15:53:14 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "ft_printf.h"
-#include "/Users/mteerlin/Documents/ProjectLibft/Libft/libft.h"
+#include "Libft/libft.h"
 
 static void	parse_flags(t_flags *flags, const char **format)
 {
@@ -74,11 +74,13 @@ static void	parse_type(t_flags *flags, const char **format, va_list *args)
 {
 	if (**format == 'd' || **format == 'i')
 		ft_pf_signed_dec(va_arg(*args, int), flags);
-//	else if (*format == 'x' || *format == 'X')
-//	else if (*format == 'c')
-//	else if (*format == 's')
-//	else if (*format == 'p')
-//	else if (*format == '%')
+//	else if (**format == 'u')
+//	else if (**format == 'x' || **format == 'X')
+//	else if (**format == 'c')
+//	else if (**format == 's')
+//	else if (**format == 'p')
+	else if (**format == '%')
+		ft_putchar_fd('%', 1);
 	return ;
 }
 

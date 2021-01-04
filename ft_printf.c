@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/05 13:03:23 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/12/08 21:57:03 by mteerlin      ########   odam.nl         */
+/*   Updated: 2020/12/11 15:39:12 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include "ft_printf.h"
-#include "/Users/mteerlin/Documents/ProjectLibft/Libft/libft.h"
+#include "Libft/libft.h"
 
 int	ft_printf(const char *format, ...)
 {
@@ -51,41 +51,41 @@ int	main(void)
 	d = -i;
 	c = 'T';
 	s = "I'm a lumberjack and I'm OK";
-	printf("flags:\tnone\twidth:\tnone\tprecision:\tnone\tint:\t%d\tPrintf\n", d);
-	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\tnone\tint:\t%d\tft_Printf\n\n", d);
-	printf("flags:\tnone\twidth:\t10\tprecision:\tnone\tint:\t%10d\tPrintf\n", d);
-	ft_printf("flags:\tnone\twidth:\t10\tprecision:\tnone\tint:\t%10d\tft_Printf\n\n", d);
-	printf("flags:\tnone\twidth:\tnone\tprecision:\t10\tint:\t%.10d\tPrintf\n", d);
-	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\t10\tint:\t%.10d\tft_Printf\n\n", d);
-	printf("flags:\t0\twidth:\t10\tprecision:\tnone\tint:\t%010d\tPrintf\n", d);
-	ft_printf("flags:\t0\twidth:\t10\tprecision:\tnone\tint:\t%010d\tft_Printf\n\n", d);
-	printf("flags:\t-\twidth:\tnone\tprecision:\t10\tint:\t%-.10d\tPrintf\n", d);
-	ft_printf("flags:\t-\twidth:\tnone\tprecision:\t10\tint:\t%-.10d\tft_Printf\n\n", d);
-	printf("flags:\tnone\twidth:\t20\tprecision:\t10\tint:\t%20.10d\tPrintf\n", d);
-	ft_printf("flags:\tnone\twidth:\t20\tprecision:\t10\tint:\t%20.10d\tft_Printf\n\n", d);
-	printf("flags:\t-\twidth:\t20\tprecision:\t10\tint:\t%-20.10d\tPrintf\n", d);
-	ft_printf("flags:\t-\twidth:\t20\tprecision:\t10\tint:\t%-20.10d\tft_Printf\n\n", d);
-	printf("flags:\tnone\twidth:\tnone\tprecision:\t0\tint:\t%.0d\tPrintf\n", d);
-	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\t0\tint:\t%.0d\tft_Printf\n\n", d);
-	printf("flags:\t0\twidth:\t0\tprecision:\t0\tint:\t%00d\tPrintf\n", d);
-	ft_printf("flags:\t0\twidth:\t0\tprecision:\t0\tint:\t%00d\tft_Printf\n\n", d);
-	printf("flags:\tnone\twidth:\tnone\tprecision:\tnone\tint:\t%i\tPrintf\n", i);
-	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\tnone\tint:\t%i\tft_Printf\n\n", i);
-	printf("flags:\tnone\twidth:\t10\tprecision:\tnone\tint:\t%10i\tPrintf\n", i);
-	ft_printf("flags:\tnone\twidth:\t10\tprecision:\tnone\tint:\t%10i\tft_Printf\n\n", i);
-	printf("flags:\tnone\twidth:\tnone\tprecision:\t10\tint:\t%.10i\tPrintf\n", i);
-	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\t10\tint:\t%.10i\tft_Printf\n\n", i);
-	printf("flags:\t0\twidth:\t10\tprecision:\tnone\tint:\t%010i\tPrintf\n", i);
-	ft_printf("flags:\t0\twidth:\t10\tprecision:\tnone\tint:\t%010i\tft_Printf\n\n", i);
-	printf("flags:\t-\twidth:\tnone\tprecision:\t10\tint:\tint:\t%-.10i\tPrintf\n", i);
-	ft_printf("flags:\t-\twidth:\tnone\tprecision:\t10\tint:\tint:\t%-.10i\tft_Printf\n\n", i);
-	printf("flags:\tnone\twidth:\t20\tprecision:\t10\t%20.10i\tPrintf\n", i);
-	ft_printf("flags:\tnone\twidth:\t20\tprecision:\t10\t%20.10i\tft_Printf\n\n", i);
-	printf("flags:\t-\twidth:\t20\tprecision:\t10\tint:\t%-20.10i\tPrintf\n", i);
-	ft_printf("flags:\t-\twidth:\t20\tprecision:\t10\tint:\t%-20.10i\tft_Printf\n\n", i);
-	printf("flags:\tnone\twidth:\tnone\tprecision:\t0\tint:\t%.0i\tPrintf\n", i);
-	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\t0\tint:\t%.0i\tft_Printf\n\n", i);
-	printf("flags:\t0\twidth:\t0\tprecision:\t0\tint:\t%00i\tPrintf\n", i);
-	ft_printf("flags:\t0\twidth:\t0\tprecision:\t0\tint:\t%00i\tft_Printf\n\n", i);
+	printf("flags:\tnone\twidth:\tnone\tprecision:\tnone\t%%d:\t%d\tPrintf\n", d);
+	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\tnone\t%%d:\t%d\tft_Printf\n\n", d);
+	printf("flags:\tnone\twidth:\t10\tprecision:\tnone\t%%d:\t%10d\tPrintf\n", d);
+	ft_printf("flags:\tnone\twidth:\t10\tprecision:\tnone\t%%d:\t%10d\tft_Printf\n\n", d);
+	printf("flags:\tnone\twidth:\tnone\tprecision:\t10\t%%d:\t%.10d\tPrintf\n", d);
+	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\t10\t%%d:\t%.10d\tft_Printf\n\n", d);
+	printf("flags:\t0\twidth:\t10\tprecision:\tnone\t%%d:\t%010d\tPrintf\n", d);
+	ft_printf("flags:\t0\twidth:\t10\tprecision:\tnone\t%%d:\t%010d\tft_Printf\n\n", d);
+	printf("flags:\t-\twidth:\tnone\tprecision:\t10\t%%d:\t%-.10d\tPrintf\n", d);
+	ft_printf("flags:\t-\twidth:\tnone\tprecision:\t10\t%%d:\t%-.10d\tft_Printf\n\n", d);
+	printf("flags:\tnone\twidth:\t20\tprecision:\t10\t%%d:\t%20.10d\tPrintf\n", d);
+	ft_printf("flags:\tnone\twidth:\t20\tprecision:\t10\t%%d:\t%20.10d\tft_Printf\n\n", d);
+	printf("flags:\t-\twidth:\t20\tprecision:\t10\t%%d:\t%-20.10d\tPrintf\n", d);
+	ft_printf("flags:\t-\twidth:\t20\tprecision:\t10\t%%d:\t%-20.10d\tft_Printf\n\n", d);
+	printf("flags:\tnone\twidth:\tnone\tprecision:\t0\t%%d:\t%.0d\tPrintf\n", d);
+	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\t0\t%%d:\t%.0d\tft_Printf\n\n", d);
+	printf("flags:\t0\twidth:\t0\tprecision:\t0\t%%d:\t%0d\tPrintf\n", d);
+	ft_printf("flags:\t0\twidth:\t0\tprecision:\t0\t%%d:\t%0d\tft_Printf\n\n", d);
+	printf("flags:\tnone\twidth:\tnone\tprecision:\tnone\t%%i:\t%i\tPrintf\n", i);
+	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\tnone\t%%i:\t%i\tft_Printf\n\n", i);
+	printf("flags:\tnone\twidth:\t10\tprecision:\tnone\t%%i:\t%10i\tPrintf\n", i);
+	ft_printf("flags:\tnone\twidth:\t10\tprecision:\tnone\t%%i:\t%10i\tft_Printf\n\n", i);
+	printf("flags:\tnone\twidth:\tnone\tprecision:\t10\t%%i:\t%.10i\tPrintf\n", i);
+	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\t10\t%%i:\t%.10i\tft_Printf\n\n", i);
+	printf("flags:\t0\twidth:\t10\tprecision:\tnone\t%%i:\t%010i\tPrintf\n", i);
+	ft_printf("flags:\t0\twidth:\t10\tprecision:\tnone\t%%i:\t%010i\tft_Printf\n\n", i);
+	printf("flags:\t-\twidth:\tnone\tprecision:\t10\t%%i:\t%-.10i\tPrintf\n", i);
+	ft_printf("flags:\t-\twidth:\tnone\tprecision:\t10\t%%i:\t%-.10i\tft_Printf\n\n", i);
+	printf("flags:\tnone\twidth:\t20\tprecision:\t10\t%%i:\t%20.10i\tPrintf\n", i);
+	ft_printf("flags:\tnone\twidth:\t20\tprecision:\t10\t%%i:\t%20.10i\tft_Printf\n\n", i);
+	printf("flags:\t-\twidth:\t20\tprecision:\t10\t%%i:\t%-20.10i\tPrintf\n", i);
+	ft_printf("flags:\t-\twidth:\t20\tprecision:\t10\t%%i:\t%-20.10i\tft_Printf\n\n", i);
+	printf("flags:\tnone\twidth:\tnone\tprecision:\t0\t%%i:\t%.0i\tPrintf\n", i);
+	ft_printf("flags:\tnone\twidth:\tnone\tprecision:\t0\t%%i:\t%.0i\tft_Printf\n\n", i);
+	printf("flags:\t0\twidth:\t0\tprecision:\t0\t%%i:\t%0i\tPrintf\n", i);
+	ft_printf("flags:\t0\twidth:\t0\tprecision:\t0\t%%i:\t%0i:\tft_Printf\n\n", i);
 	return (0);
 }
