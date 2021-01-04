@@ -6,13 +6,14 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/05 16:54:46 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/12/11 15:53:14 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/01/04 11:51:16 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "ft_printf.h"
 #include "Libft/libft.h"
+#include <stdio.h>
 
 static void	parse_flags(t_flags *flags, const char **format)
 {
@@ -74,13 +75,20 @@ static void	parse_type(t_flags *flags, const char **format, va_list *args)
 {
 	if (**format == 'd' || **format == 'i')
 		ft_pf_signed_dec(va_arg(*args, int), flags);
-//	else if (**format == 'u')
-//	else if (**format == 'x' || **format == 'X')
+	else if (**format == 'u')
+		ft_pf_unsigned_base(va_arg(*args, int), flags, B_DEC, **format);
+	else if (**format == 'x' || **format == 'X')
+		ft_pf_unsigned_base(va_arg(*args, int), flags, B_HEXDEC, **format);
+	else if (**format == 'p')
+	{
+		flags->precision = -1;
+		flags->flag[(int)'0'] = 0;
+		ft_pf_unsigned_base(va_arg(*args, int), flags, B_HEXDEC, **format);
+	}
 //	else if (**format == 'c')
-//	else if (**format == 's')
-//	else if (**format == 'p')
-	else if (**format == '%')
-		ft_putchar_fd('%', 1);
+	else if (**format == 's')
+		ft_pf_string(va_arg(*args, char*), flags);
+//	else if (**format == '%')
 	return ;
 }
 

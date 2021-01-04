@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_pf_signed_dec.c                                 :+:    :+:            */
+/*   ft_pf_unsigned_base.c                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/08 11:54:23 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/01/04 12:37:39 by mteerlin      ########   odam.nl         */
+/*   Created: 2020/12/15 17:09:04 by mteerlin      #+#    #+#                 */
+/*   Updated: 2020/12/15 20:02:02 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
-#include "Libft/libft.h"
 #include "ft_printf.h"
 
-static void	ft_pf_build_precision(char **arr, t_flags *flags, int len)
+int	ft_pf_unsigned_base(unsigned int nbr, t_flags *flags, \
+							char *base, const char format)
 {
 	int		len;
 	int		size;
 	char	*arr;
 
-	arr = ft_itoa_base(nbr, B_DEC);
+	arr = ft_itoa_base(nbr, base);
 	if (arr == NULL)
 		return (-1);
-	if (arr[0] == '-')
-		flags->sign = 1;
 	len = ft_strlen(arr);
 	if (flags->precision > len && build_precision(len, flags, &arr) == -1)
 		return (-1);
@@ -33,26 +29,13 @@ static void	ft_pf_build_precision(char **arr, t_flags *flags, int len)
 	if (prep_ret(size, flags) == -1)
 		return (-1);
 	size--;
-	len = ft_strlen(arr) - 1;
-	if (fill_ret(len, size, &arr, flags) == -1)
+	if (fill_ret((ft_strlen(arr) - 1), size, &arr, flags) == -1)
 		return (-1);
+	len = 0;
+	while (format == 'X' && flags->ret[len] != '\0')
+	{
+		flags->ret[len] = ft_toupper(flags->ret[len]);
+		len++;
+	}
 	return (1);
-}
-
-int			ft_pf_signed_dec(int nbr, t_flags *flags)
-{
-	int		len;
-	char	*arr;
-
-	arr = ft_itoa_base(nbr, 10);
-	if (arr == NULL)
-		return (-1);
-	if (arr[0] == '-')
-		flags->sign = 1;
-	len = ft_strlen(arr);
-	if (flags->precision >= 0)
-		flags->flag[(int)'0'] = 0;
-	if (flags->precision > len)
-		ft_pf_build_precision(&arr, flags, len);
-	return (ft_pf_build_return(&arr, flags, len));
 }
