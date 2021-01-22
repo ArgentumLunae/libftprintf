@@ -5,36 +5,38 @@
 /*                                                     +:+                    */
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/05 13:39:24 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/12/15 20:25:11 by mteerlin      ########   odam.nl         */
+/*   Created: 2021/01/15 11:48:49 by mteerlin      #+#    #+#                 */
+/*   Updated: 2021/01/20 13:53:32 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# include "Libft/libft.h"
+# define CONVERSION_CHAR "cspdiuxX%"
+# define FLAG_CHAR "-0 .*"
 # include <stdarg.h>
-# define TYPESYMBOLS "cspdiuxX%lh"
-# define FLAGSYMBOLS "-0# +"
-# define B_HEXDEC "0123456789abcdef"
-# define B_DEC "0123456789"
+# include <stddef.h>
 
-typedef struct	s_flags
+typedef struct	s_mods
 {
-	int		flag[128];
-	int		width;
-	int		precision;
-	int		sign;
-	char	*ret;
-}				t_flags;
-int				ft_printf(const char *format, ...);
-void			pf_parse(t_flags *flags, const char **format, va_list *args);
-size_t			det_size(int len, t_flags *flags);
-int				build_precision(int len, t_flags *flags, char **arr);
-int				ft_pf_signed_dec(int nbr, t_flags *flags);
-int				prep_ret(int size, t_flags *flags);
-int				fill_ret(int len, int size, char **arr, t_flags *flags);
-int				ft_pf_unsigned_base(unsigned int nbr, t_flags *flags, \
-										char *base, const char format);
-int				ft_pf_string(char *str, t_flags *flags);
+	unsigned int	lallign;
+	unsigned int	fillzero;
+	int				precision;
+	int				width;
+	int				sign;
+	char			*modstr;
+}				t_mods;
+
+int		ft_printf(const char *format, ...);
+int		pf_parse(const char **format, t_mods *mods, va_list *args);
+int		pf_signed_dec(int nbr, t_mods *mods);
+int		pf_unsigned_base(unsigned int nbr, unsigned int base, \
+							t_mods *mods, const char format);
+int		pf_string(char *str, t_mods *mods);
+int	pf_character(int c, t_mods *mods);
+int	pf_pointer(void *ptr, t_mods *mods);
+size_t	det_size(int len, t_mods *mods);
+int		build_precision(int len, t_mods *mods, char **arr);
+int		prep_modstr(int size, t_mods *mods);
+int		fill_modstr(int len, int size, char **arr, t_mods *mods);
 #endif

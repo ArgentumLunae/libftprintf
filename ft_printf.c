@@ -5,39 +5,42 @@
 /*                                                     +:+                    */
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/05 13:03:23 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/01/04 11:49:56 by mteerlin      ########   odam.nl         */
+/*   Created: 2021/01/15 11:47:48 by mteerlin      #+#    #+#                 */
+/*   Updated: 2021/01/20 16:44:01 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
-#include <stdio.h>
-#include <stdarg.h>
 #include "ft_printf.h"
-#include "Libft/libft.h"
+#include "libft/libft.h"
+#include <stdarg.h>
 #include <stdlib.h>
 
 int	ft_printf(const char *format, ...)
 {
 	va_list args;
-	t_flags	flags;
+	t_mods	mods;
+	int		ret;
 
-	ft_bzero(&flags, sizeof(t_flags));
+	ft_bzero(&mods, sizeof(t_mods));
+	mods.precision = -1;
 	va_start(args, format);
+	ret = 0;
 	while (*format != '\0')
 	{
 		if (*format == '%')
 		{
 			format++;
-			ft_bzero(&flags, sizeof(t_flags));
-			pf_parse(&flags, &format, &args);
-			ft_putstr_fd(flags.ret, 1);
-			free(flags.ret);
+			pf_parse(&format, &mods, &args);
+			ft_putstr_fd(mods.modstr, 1);
+			ret += ft_strlen(mods.modstr);
+			free(mods.modstr);
+			mods.modstr = NULL;
+			format++;
+			continue ;
 		}
-		else
-			ft_putchar_fd(*format, 1);
+		ft_putchar_fd(*format, 1);
+		ret++;
 		format++;
 	}
-	va_end(args);
-	return (1);
+	return (0);
 }

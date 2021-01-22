@@ -5,38 +5,37 @@
 #                                                      +:+                     #
 #    By: mteerlin <mteerlin@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
-#    Created: 2020/12/08 12:21:56 by mteerlin      #+#    #+#                  #
-#    Updated: 2020/12/15 20:22:05 by mteerlin      ########   odam.nl          #
+#    Created: 2021/01/18 13:34:08 by mteerlin      #+#    #+#                  #
+#    Updated: 2021/01/20 17:27:41 by mteerlin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= libftprintf.a
-SOURCES	= ft_printf.c ft_printf_utils.c ft_pf_parse.c ft_pf_signed_dec.c	\
-			ft_pf_unsigned_base.c ft_pf_string.c
-OBJECTS	= $(SOURCES:.c=.o)
-OBJ_DIR	= obj
-LIBFT	= Libft/libft.a
+NAME		= libftprintf.a
+SOURCE		= ft_printf.c pf_parse.c pf_integers.c pf_characters.c pf_utils.c
+OBJECTS		= $(SOURCE:.c=.o)
+HEADER		= ft_printf.h
+CFLAGS		= -Wall -Wextra -Werror
 
-HEADER	= ft_printf.h
-CFLAGS	= -Wall -Wextra -Werror
+all: 		$(NAME)
 
-all:			$(NAME)
+$(NAME):	$(OBJECTS) libft/libft.a
+				ar rcs $(NAME) $(OBJECTS)
 
-$(NAME):		$(OBJECTS)
-					ar rcs $(NAME) $(OBJECTS)
+%.o:		%.c $(HEADER)
+			$(CC) -c $(CFLAGS) -o $@ $<
 
-$(OBJ_DIR)/%.o:	%.c $(HEADER)
-					$(CC) -c $(CFLAGS) -o $@ $<
+bonus:
+			$(MAKE) WITH_BONUS=1 all
 
 clean:
-				rm -f *.o
+			rm -f *.o *.so
 
 fclean:
-				$(MAKE) clean
-				rm -f $(NAME)
+			$(MAKE) clean
+			rm -f $(NAME)
 
 re:
-				$(MAKE) fclean
-				$(MAKE) all
+			$(MAKE) fclean
+			$(MAKE) all
 
-.PHONY:			all clean fclean re
+.PHONY:		all clean fclean re
