@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/15 11:48:49 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/01/20 13:53:32 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/02/23 13:49:51 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define FLAG_CHAR "-0 .*"
 # include <stdarg.h>
 # include <stddef.h>
+# include "../libft/libft.h"
 
 typedef struct	s_mods
 {
@@ -27,16 +28,16 @@ typedef struct	s_mods
 	char			*modstr;
 }				t_mods;
 
-int		ft_printf(const char *format, ...);
-int		pf_parse(const char **format, t_mods *mods, va_list *args);
-int		pf_signed_dec(int nbr, t_mods *mods);
-int		pf_unsigned_base(unsigned int nbr, unsigned int base, \
-							t_mods *mods, const char format);
-int		pf_string(char *str, t_mods *mods);
-int	pf_character(int c, t_mods *mods);
-int	pf_pointer(void *ptr, t_mods *mods);
-size_t	det_size(int len, t_mods *mods);
-int		build_precision(int len, t_mods *mods, char **arr);
-int		prep_modstr(int size, t_mods *mods);
-int		fill_modstr(int len, int size, char **arr, t_mods *mods);
+int				ft_printf(const char *format, ...);
+int				pf_parse(const char **format, t_mods *mods, va_list args);
+int				pf_sign_dec(int nbr, t_mods *mods);
+int				pf_usign_base(unsigned int nbr, unsigned int base, \
+								t_mods *mods, const char format);
+int				pf_string(char *str, t_mods *mods);
+int				pf_character(int c, t_mods *mods);
+int				pf_pointer(void *ptr, t_mods *mods);
+size_t			det_size(int len, t_mods *mods);
+int				build_precision(int len, t_mods *mods, char **arr);
+int				prep_modstr(int size, t_mods *mods);
+int				fill_modstr(int len, int size, char **arr, t_mods *mods);
 #endif

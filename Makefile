@@ -6,32 +6,49 @@
 #    By: mteerlin <mteerlin@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/01/18 13:34:08 by mteerlin      #+#    #+#                  #
-#    Updated: 2021/01/20 17:27:41 by mteerlin      ########   odam.nl          #
+#    Updated: 2021/01/29 14:27:35 by mteerlin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libftprintf.a
-SOURCE		= ft_printf.c pf_parse.c pf_integers.c pf_characters.c pf_utils.c
-OBJECTS		= $(SOURCE:.c=.o)
-HEADER		= ft_printf.h
+AR			= ar rcs
 CFLAGS		= -Wall -Wextra -Werror
+
+SRC_DIR		= src/
+OBJ_DIR		= obj/
+HDR_DIR		= incl/
+LIB_DIR		= libft/
+
+HDR 		= $(HDR_DIR)ft_printf.h
+SRC			= ft_printf.c \
+			  pf_character.c \
+			  pf_parse.c \
+			  pf_pointers.c \
+			  pf_signed_dec.c \
+			  pf_string.c \
+			  pf_unsigned_base.c \
+			  pf_utils.c
+OBJ			= $(SRC:%.c=$(SRC_DIR)%.o)
+LIBFT		= $(LIB_DIR)libft.a
 
 all: 		$(NAME)
 
-$(NAME):	$(OBJECTS) libft/libft.a
-				ar rcs $(NAME) $(OBJECTS)
+$(NAME): $(LIBFT) $(OBJ)
+			cp $(LIBFT) $(NAME)
+			$(AR) $(NAME) $(OBJ)
 
-%.o:		%.c $(HEADER)
-			$(CC) -c $(CFLAGS) -o $@ $<
+$(LIBFT):
+			$(MAKE) -C libft bonus
 
-bonus:
-			$(MAKE) WITH_BONUS=1 all
+%.o: %.c $(HDR_DIR)$(HDR)
+			$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-			rm -f *.o *.so
+			rm -f $(OBJ)
 
 fclean:
 			$(MAKE) clean
+			$(MAKE) -C libft fclean
 			rm -f $(NAME)
 
 re:

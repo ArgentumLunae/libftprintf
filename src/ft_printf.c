@@ -6,12 +6,11 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/15 11:47:48 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/01/20 16:44:01 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/02/23 13:52:28 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft/libft.h"
 #include <stdarg.h>
 #include <stdlib.h>
 
@@ -30,9 +29,8 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			pf_parse(&format, &mods, &args);
+			ret += pf_parse(&format, &mods, args);
 			ft_putstr_fd(mods.modstr, 1);
-			ret += ft_strlen(mods.modstr);
 			free(mods.modstr);
 			mods.modstr = NULL;
 			format++;
@@ -42,5 +40,5 @@ int	ft_printf(const char *format, ...)
 		ret++;
 		format++;
 	}
-	return (0);
+	return (ret);
 }

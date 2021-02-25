@@ -1,0 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   pf_signed_dec.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/01/29 13:32:49 by mteerlin      #+#    #+#                 */
+/*   Updated: 2021/01/29 13:56:49 by mteerlin      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+#include <stdlib.h>
+
+int		pf_sign_dec(int nbr, t_mods *mods)
+{
+	int		templen;
+	int		totlen;
+	char	*temp;
+
+	temp = ft_itoa_base((long long int)nbr, 10);
+	if (temp == NULL)
+		return (-1);
+	if (nbr < 0)
+		mods->sign = 1;
+	templen = ft_strlen(temp);
+	if (mods->precision == 0 && nbr == 0)
+	{
+		if (build_precision(0, mods, &temp) < 0)
+			return (-1);
+	}
+	if (mods->precision > templen)
+	{
+		if (build_precision(templen, mods, &temp) < 0)
+			return (-1);
+	}
+	templen = ft_strlen(temp);
+	totlen = det_size(templen, mods);
+	if (prep_modstr(totlen, mods))
+		return (fill_modstr(templen, totlen, &temp, mods));
+	return (-1);
+}
