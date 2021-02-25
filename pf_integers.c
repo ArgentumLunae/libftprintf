@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/15 16:30:09 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/01/20 16:45:14 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/01/22 11:52:51 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,10 @@ int	pf_pointer(void *ptr, t_mods *mods)
 	char	*temp;
 	char	*temp2;
 
-	if (ptr == NULL)
-		temp = ft_strdup("(nil)");
-	else
-	{
-		temp = ft_itoa_base((long long int)ptr, 16);
-		temp2 = ft_strjoin("0x", temp);
-		free(temp);
-		temp = temp2;
-	}
+	temp = ft_itoa_base((long long int)ptr, 16);
+	temp2 = ft_strjoin("0x", temp);
+	free(temp);
+	temp = temp2;
 	if (temp == NULL)
 		return (-1);
 	templen = ft_strlen(temp);
