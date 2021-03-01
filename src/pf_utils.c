@@ -6,13 +6,12 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/08 17:13:19 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/01/20 14:48:19 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/02/23 13:25:16 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ft_printf.h"
-#include "libft/libft.h"
 
 size_t	det_size(int len, t_mods *mods)
 {
@@ -64,7 +63,7 @@ int		prep_modstr(int size, t_mods *mods)
 	return (1);
 }
 
-int	fill_modstr(int len, int size, char **arr, t_mods *mods)
+int		fill_modstr(int len, int size, char **arr, t_mods *mods)
 {
 	if (mods->lallign == 1 || size == len)
 	{
@@ -89,5 +88,5 @@ int	fill_modstr(int len, int size, char **arr, t_mods *mods)
 	}
 	free(*arr);
 	*arr = NULL;
-	return (1);
+	return (ft_strlen(mods->modstr));
 }
