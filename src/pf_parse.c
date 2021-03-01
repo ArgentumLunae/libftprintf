@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/15 12:27:19 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/02/23 15:01:50 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/02/25 17:38:23 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ static int	parse_flags(const char **format, t_mods *mods, va_list args)
 		parse_width(format, mods, args);
 	else if (**format == '.')
 		parse_precision(format, mods, args);
-	if (mods->precision >= 0)
-		mods->fillzero = 0;
 	return (1);
 }
 

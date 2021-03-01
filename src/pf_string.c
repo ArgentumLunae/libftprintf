@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/29 14:19:14 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/02/25 15:40:18 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/02/25 17:39:15 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@ int			pf_string(char *str, t_mods *mods)
 
 	if (str == NULL)
 	{
-		if ((mods->precision >= 0 && mods->precision < 6) && \
-				(mods->width > mods->precision || mods->width == 0))
+		if ((mods->precision >= 0 && mods->precision < 6) && mods->width == 0)
 			str = ft_strdup("");
 		else
 			str = ft_strdup("(null)");
 	}
+	if (mods->precision >= 0)
+		mods->fillzero = 0;
 	arr = string_precision(ft_strlen(str), str, mods);
 	if (!arr)
 		return (-1);

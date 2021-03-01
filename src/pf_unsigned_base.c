@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/15 16:30:09 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/02/01 13:46:18 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/02/25 17:39:38 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int			pf_usign_base(unsigned int nbr, unsigned int base, \
 	temp = ft_itoa_base(nbr, base);
 	if (temp == NULL)
 		return (-1);
+	if (mods->precision >= 0)
+		mods->fillzero = 0;
 	preslen = pf_precision_len(nbr, ft_strlen(temp), &temp, mods);
 	if (preslen < 0)
 		return (-1);

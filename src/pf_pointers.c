@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/29 13:36:37 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/02/23 13:20:10 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/02/25 16:07:33 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	pf_pointer(void *ptr, t_mods *mods)
 	char	*temp2;
 
 	if (ptr == NULL)
-		temp = ft_strdup("(nil)");
+		temp = ft_strdup("0x0");
 	else
 	{
 		temp = ft_itoa_base((long long int)ptr, 16);
