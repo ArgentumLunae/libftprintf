@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/29 14:19:14 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/02/25 15:58:52 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/03/02 10:24:10 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static char	*string_precision(int len, char *str, t_mods *mods)
 {
-	char *arr;
+	char	*arr;
 
 	if (mods->precision < len && mods->precision >= 0)
 	{
@@ -33,7 +33,7 @@ static char	*string_precision(int len, char *str, t_mods *mods)
 	return (arr);
 }
 
-int			pf_string(char *str, t_mods *mods)
+int	pf_string(char *str, t_mods *mods)
 {
 	int		len;
 	int		size;
@@ -41,11 +41,13 @@ int			pf_string(char *str, t_mods *mods)
 
 	if (str == NULL)
 	{
-		if ((mods->precision >= 0 && mods->precision < 6) && mods->width == 0)
+		if ((mods->precision < 0 && mods->precision > 6))
 			str = ft_strdup("");
 		else
 			str = ft_strdup("(null)");
 	}
+	if (mods->precision >= 0)
+		mods->fillzero = 0;
 	arr = string_precision(ft_strlen(str), str, mods);
 	if (!arr)
 		return (-1);

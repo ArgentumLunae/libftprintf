@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/07 11:40:23 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/11/16 12:32:58 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/03/02 13:46:26 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ t_list	*ft_lstnew(void *content)
 	if (new == NULL)
 		return (NULL);
 	new->content = content;
-	new->next = (void *)NULL;
+	new->next = NULL;
 	return (new);
 }

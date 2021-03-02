@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/27 13:51:00 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/11/09 11:20:56 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/03/02 13:50:15 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t offset;
-	size_t len;
+	size_t	offset;
+	size_t	len;
 
 	if (src == NULL)
 		return (0);

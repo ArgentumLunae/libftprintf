@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/28 12:35:45 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/11/12 11:54:36 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/03/02 13:47:03 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 
 	offset = 0;
 	tdest = (unsigned char *)dest;
-	tsrc = (const char*)src;
+	tsrc = (const char *)src;
 	while (offset < n)
 	{
 		tdest[offset] = tsrc[offset];

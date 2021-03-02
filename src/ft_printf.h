@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/15 11:48:49 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/02/23 13:49:51 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/03/02 16:00:35 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stddef.h>
 # include "../libft/libft.h"
 
-typedef struct	s_mods
+typedef struct s_mods
 {
 	unsigned int	lallign;
 	unsigned int	fillzero;
@@ -36,6 +36,7 @@ int				pf_usign_base(unsigned int nbr, unsigned int base, \
 int				pf_string(char *str, t_mods *mods);
 int				pf_character(int c, t_mods *mods);
 int				pf_pointer(void *ptr, t_mods *mods);
+int				pf_percentile(t_mods *mods);
 size_t			det_size(int len, t_mods *mods);
 int				build_precision(int len, t_mods *mods, char **arr);
 int				prep_modstr(int size, t_mods *mods);

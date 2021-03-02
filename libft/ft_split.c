@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/02 17:41:54 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/11/16 18:06:29 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/03/02 13:49:59 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static unsigned int	wordstart(char const *s, char c, int n)
 
 static unsigned int	wordlen(char const *s, unsigned int start, char c)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (s[start + len] != c && s[start + len] != '\0')
@@ -59,7 +59,7 @@ static unsigned int	wordlen(char const *s, unsigned int start, char c)
 	return (len);
 }
 
-static void			freesplit(char **split, int offset)
+static void	freesplit(char **split, int offset)
 {
 	while (offset >= 0)
 	{
@@ -69,7 +69,7 @@ static void			freesplit(char **split, int offset)
 	free(split);
 }
 
-char				**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	unsigned int	len;
 	unsigned int	offset;

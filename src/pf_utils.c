@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/08 17:13:19 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/02/23 13:25:16 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/03/02 13:25:49 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,25 @@ size_t	det_size(int len, t_mods *mods)
 	return (len);
 }
 
-int		build_precision(int len, t_mods *mods, char **arr)
+int	build_precision(int len, t_mods *mods, char **arr)
 {
 	char	*temp;
-	int		preslen;
+	int		preclen;
 
-	preslen = mods->precision + mods->sign;
-	temp = malloc((preslen + 1) * sizeof(char));
+	preclen = mods->precision + mods->sign;
+	temp = malloc((preclen + 1) * sizeof(char));
 	if (!temp)
 		return (-1);
-	ft_memset(temp, '0', preslen);
-	temp[preslen] = '\0';
-	while (preslen > mods->sign)
+	ft_memset(temp, '0', preclen);
+	temp[preclen] = '\0';
+	while ((preclen - mods->sign) > 0)
 	{
-		if (len > mods->sign)
-			temp[preslen - 1] = (*arr)[len - 1];
+		if ((len - mods->sign) > 0)
+			temp[preclen - 1] = (*arr)[len - 1];
 		else
-			temp[preslen - 1] = '0';
+			temp[preclen - 1] = '0';
 		len--;
-		preslen--;
+		preclen--;
 	}
 	if (mods->sign == 1)
 		temp[0] = (*arr)[0];
@@ -50,7 +50,7 @@ int		build_precision(int len, t_mods *mods, char **arr)
 	return (ft_strlen(*arr));
 }
 
-int		prep_modstr(int size, t_mods *mods)
+int	prep_modstr(int size, t_mods *mods)
 {
 	mods->modstr = malloc((size + 1) * sizeof(char));
 	if (mods->modstr == NULL)
@@ -63,7 +63,7 @@ int		prep_modstr(int size, t_mods *mods)
 	return (1);
 }
 
-int		fill_modstr(int len, int size, char **arr, t_mods *mods)
+int	fill_modstr(int len, int size, char **arr, t_mods *mods)
 {
 	if (mods->lallign == 1 || size == len)
 	{

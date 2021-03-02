@@ -6,7 +6,7 @@
 #    By: mteerlin <mteerlin@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/01/18 13:34:08 by mteerlin      #+#    #+#                  #
-#    Updated: 2021/01/29 14:27:35 by mteerlin      ########   odam.nl          #
+#    Updated: 2021/03/02 16:01:14 by mteerlin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,6 @@ AR			= ar rcs
 CFLAGS		= -Wall -Wextra -Werror
 
 SRC_DIR		= src/
-OBJ_DIR		= obj/
-HDR_DIR		= incl/
 LIB_DIR		= libft/
 
 HDR 		= $(HDR_DIR)ft_printf.h
@@ -27,6 +25,7 @@ SRC			= ft_printf.c \
 			  pf_signed_dec.c \
 			  pf_string.c \
 			  pf_unsigned_base.c \
+			  pf_percentile.c\
 			  pf_utils.c
 OBJ			= $(SRC:%.c=$(SRC_DIR)%.o)
 LIBFT		= $(LIB_DIR)libft.a

@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/04 10:54:26 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/11/04 10:54:53 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/03/02 13:49:31 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char c;
+	char	c;
 
 	if (n == -2147483648)
 	{

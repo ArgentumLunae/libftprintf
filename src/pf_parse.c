@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/15 12:27:19 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/02/23 15:01:50 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/03/02 16:00:02 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int	parse_width(const char **format, t_mods *mods, va_list args)
 {
-	int arg;
+	int	arg;
 
 	arg = 0;
 	if (**format == '*')
@@ -62,13 +62,13 @@ static int	parse_flags(const char **format, t_mods *mods, va_list args)
 {
 	if (**format == '-')
 		mods->lallign = 1;
-	else if (**format == '0')
+	else if (**format == '0' && mods->lallign <= 0)
 		mods->fillzero = 1;
 	else if ((**format != '0' && ft_isdigit(**format)) || **format == '*')
 		parse_width(format, mods, args);
 	else if (**format == '.')
 		parse_precision(format, mods, args);
-	if (mods->precision >= 0)
+	if (mods->lallign > 0)
 		mods->fillzero = 0;
 	return (1);
 }
@@ -88,14 +88,11 @@ static int	parse_conversion(const char **format, t_mods *mods, va_list args)
 	else if (**format == 'x' || **format == 'X')
 		return (pf_usign_base(va_arg(args, unsigned int), 16, mods, **format));
 	else if (**format == '%')
-	{
-		mods->modstr = ft_strdup("%");
-		return (1);
-	}
+		return (pf_percentile(mods));
 	return (-1);
 }
 
-int			pf_parse(const char **format, t_mods *mods, va_list args)
+int	pf_parse(const char **format, t_mods *mods, va_list args)
 {
 	while (ft_strchr(FLAG_CHAR, **format) || ft_isdigit(**format))
 	{

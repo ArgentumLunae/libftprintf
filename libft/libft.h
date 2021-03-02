@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/28 14:18:08 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/01/15 16:02:26 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/03/02 13:52:14 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define BASE_STR "0123456789abcdefghijklmnopqrstuvwxyz"
 # include <stddef.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;

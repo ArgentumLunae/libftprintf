@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/04 11:00:28 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/11/12 15:59:31 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/03/02 13:44:39 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	buildlen(size_t len, int n)
 	return (len);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	size_t	len;
 	long	ln;

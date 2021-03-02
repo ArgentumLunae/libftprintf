@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/27 19:44:32 by mteerlin      #+#    #+#                 */
-/*   Updated: 2020/11/16 12:29:29 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/03/02 13:50:33 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t offset;
+	size_t	offset;
 
 	offset = 0;
 	if (n == 0)

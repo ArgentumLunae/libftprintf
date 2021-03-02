@@ -6,7 +6,7 @@
 /*   By: mteerlin <mteerlin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/15 15:41:55 by mteerlin      #+#    #+#                 */
-/*   Updated: 2021/01/19 15:30:45 by mteerlin      ########   odam.nl         */
+/*   Updated: 2021/03/02 13:44:52 by mteerlin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-static size_t buildlen(long long int nbr, unsigned int base)
+static size_t	buildlen(long long int nbr, unsigned int base)
 {
 	size_t	len;
 
